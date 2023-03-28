@@ -43,15 +43,22 @@ let questions = [
 
 let currentQuestion = 0;
 let correctAnswers = 0;
+let AUDIO_SUCCESS = new Audio('./audio/ding.mp3');
+let AUDIO_FAIL = new Audio('./audio/tock.mp3');
+
 
 function init() {
     document.getElementById('length').innerHTML = questions.length;
 }
 
 
-function showQuestion(){
+function startQuiz() {
     document.getElementById('startScreen').style = 'display: none';
     document.getElementById('question-body').style = '';
+    showQuestion()
+}
+
+function showQuestion(){
     let question = questions[currentQuestion]; 
     document.getElementById('question').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -66,19 +73,30 @@ function answer(selection) {
     let selectetQuestionNumber = selection.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
     if(question['right_answer'] == selectetQuestionNumber) {
-        document.getElementById(selection).parentNode.classList.add('bg-success');
-        correctAnswers++;
+        answerSuccess(selection);
     } else {
-        document.getElementById(selection).parentNode.classList.add('bg-danger');
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        answerFail(selection, idOfRightAnswer);
     }
     document.getElementById('next-button').disabled = false;
     answerCardDefault(true);
 }
 
 
+function answerSuccess(selection) {
+    document.getElementById(selection).parentNode.classList.add('bg-success');
+    AUDIO_SUCCESS.play();
+    correctAnswers++;
+}
+
+
+function answerFail(selection, idOfRightAnswer) {
+    document.getElementById(selection).parentNode.classList.add('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    AUDIO_FAIL.play();
+}
+
+
 function answerCardDefault(bool) {
-    console.log('disabled')
     document.getElementById('answer_1_container').disabled = bool;
     document.getElementById('answer_2_container').disabled = bool;
     document.getElementById('answer_3_container').disabled = bool;
@@ -88,19 +106,11 @@ function answerCardDefault(bool) {
 
 function nextQuestion(){
     answerCardDefault(false);
-
+    changeNextButton()
     if(currentQuestion >= questions.length -1) {
-
-        document.getElementById('endScreen').style = ''; // endscreen on
-        document.getElementById('quiz-card').classList.add('trophy-bg'); // show trophy
-        document.getElementById('question-body').style = 'display: none'; 
-
-        document.getElementById('number-of-questions').innerHTML = questions.length;
-        document.getElementById('correctAnswers').innerHTML = correctAnswers;
-        
+        screenRotation() 
         currentQuestion++;
         changePercent()
-
     } else {
         currentQuestion++;
         showQuestion();
@@ -108,6 +118,15 @@ function nextQuestion(){
         changeQuestionNumber();   
         changePercent();
     }
+}
+
+
+function screenRotation() {
+    document.getElementById('endScreen').style = ''; // endscreen on
+    document.getElementById('quiz-card').classList.add('trophy-bg'); // show trophy
+    document.getElementById('question-body').style = 'display: none'; 
+    document.getElementById('number-of-questions').innerHTML = questions.length;
+    document.getElementById('correctAnswers').innerHTML = correctAnswers;
 }
 
 
@@ -134,12 +153,11 @@ function changePercent() {
     document.getElementById('progress-bar').style.width = `${percent}%`;
 }
 
+
 function restart(){
     currentQuestion = 0;
     correctAnswers = 0;
-    document.getElementById('question-body').style = ''; 
-    document.getElementById('endScreen').style = 'display: none';
-    document.getElementById('quiz-card').classList.remove('trophy-bg'); // hide trophy
+    restartQuizScreen();
     showQuestion();
     changeQuestionNumber()
     changePercent();
@@ -147,6 +165,22 @@ function restart(){
 }
 
 
+function restartQuizScreen() {
+    document.getElementById('question-body').style = ''; 
+    document.getElementById('endScreen').style = 'display: none';
+    document.getElementById('quiz-card').classList.remove('trophy-bg'); // hide trophy
+}
+
+
+function changeNextButton() {
+    if(currentQuestion == (questions -2)){
+        document.getElementById('next-button').classList.add('result-btn');
+        document.getElementById('next-btn-text').innerHTML = 'Dein Resultat';
+    } else {
+        document.getElementById('next-button').classList.remove('result-btn');
+        document.getElementById('next-btn-text').innerHTML = 'Nächste Frage';
+    } 
+}
 
 
 
