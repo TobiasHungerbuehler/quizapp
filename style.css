@@ -96,7 +96,7 @@
 }
 
 .trophy-bg {
-    width: 100%;
+    width: 35rem;
     background-image: url('./img/tropy.png');
     background-position: right 80%; 
     background-repeat: no-repeat; 
@@ -115,6 +115,10 @@
 
 .fix-height {
     min-height: 430px;
+}
+
+.inlay {
+    width: 100%;
 }
 
 

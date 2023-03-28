@@ -23,7 +23,7 @@
         </div>
     </nav>
     
-    <div class="container">
+    <div class="container fix-width">
         <div class="card quiz-card" id="quiz-card">
             
             <!-- Top -->
@@ -38,29 +38,34 @@
 
             <!-- Start Screen -->
             <div class="card-body fix-height" id="startScreen"  >
-                <div class="startScreen-bg">
-                    <h5 class="card-title">Willkommen zum Coding - Quiz</h5>
-                    <p class="card-text">Bist du bereit ?</p>
-                </div>
-                <div class="centerCenter">
-                    <a onclick="startQuiz()" class="btn btn-warning">Los gehts !</a>
+
+                <div class="inlay">
+                    <div class="startScreen-bg">
+                        <h5 class="card-title">Willkommen zum Coding - Quiz</h5>
+                        <p class="card-text">Bist du bereit ?</p>
+                    </div>
+                    <div class="centerCenter">
+                        <a onclick="startQuiz()" class="btn btn-warning ">Los gehts !</a>
+                    </div>
                 </div>
             </div>
 
             <!-- End Screen -->
-            <div class="card-body fix-height"  id="endScreen" style="display: none;">
-                <div class="centerCenter">
-                    <img class="brain-result" src="./img/brain result.png" alt="">
-                    <h3>Quiz beendet</h3>
-                </div>
-                <div class="centerCenter">
-                    <h5>Score</h5>
-                    <div>
-                        <b id="correctAnswers">xx</b> / <b id="number-of-questions">xx</b> 
+            <div class="card-body fix-height "  id="endScreen" style="display: none;">
+                <div class="inlay">
+                    <div class="centerCenter">
+                        <img class="brain-result" src="./img/brain result.png" alt="">
+                        <h3>Quiz beendet</h3>
                     </div>
-                </div>
-                <div class="centerCenter">
-                    <button class="btn btn-primary" onclick="restart()">Erneut Spielen</button>
+                    <div class="centerCenter">
+                        <h5>Score</h5>
+                        <div>
+                            <b id="correctAnswers">xx</b> / <b id="number-of-questions">xx</b> 
+                        </div>
+                    </div>
+                    <div class="centerCenter">
+                        <button class="btn btn-primary" onclick="restart()">Erneut Spielen</button>
+                    </div>
                 </div>
             </div>
 
