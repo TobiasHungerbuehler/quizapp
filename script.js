@@ -44,15 +44,14 @@ let questions = [
 let currentQuestion = 0;
 let correctAnswers = 0;
 
-
-
 function init() {
     document.getElementById('length').innerHTML = questions.length;
-    showQuestion();
 }
 
 
 function showQuestion(){
+    document.getElementById('startScreen').style = 'display: none';
+    document.getElementById('question-body').style = '';
     let question = questions[currentQuestion]; 
     document.getElementById('question').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -74,14 +73,26 @@ function answer(selection) {
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next-button').disabled = false;
+    answerCardDefault(true);
+}
+
+
+function answerCardDefault(bool) {
+    console.log('disabled')
+    document.getElementById('answer_1_container').disabled = bool;
+    document.getElementById('answer_2_container').disabled = bool;
+    document.getElementById('answer_3_container').disabled = bool;
+    document.getElementById('answer_4_container').disabled = bool;
 }
 
 
 function nextQuestion(){
+    answerCardDefault(false);
 
     if(currentQuestion >= questions.length -1) {
 
-        document.getElementById('endScreen').style = '';
+        document.getElementById('endScreen').style = ''; // endscreen on
+        document.getElementById('quiz-card').classList.add('trophy-bg'); // show trophy
         document.getElementById('question-body').style = 'display: none'; 
 
         document.getElementById('number-of-questions').innerHTML = questions.length;
@@ -120,18 +131,19 @@ function changePercent() {
     let percent = currentQuestion / questions.length;
     percent = Math.round(percent *100);
     document.getElementById('progress-bar').innerHTML = `${percent}%`;
-    document.getElementById('progress-bar').style.width = `${percent}%`
+    document.getElementById('progress-bar').style.width = `${percent}%`;
 }
 
 function restart(){
     currentQuestion = 0;
     correctAnswers = 0;
     document.getElementById('question-body').style = ''; 
-    document.getElementById('endScreen').style = 'display-none';
+    document.getElementById('endScreen').style = 'display: none';
+    document.getElementById('quiz-card').classList.remove('trophy-bg'); // hide trophy
+    showQuestion();
+    changeQuestionNumber()
+    changePercent();
     resetButtons();
-    init();
-
-
 }
 
 

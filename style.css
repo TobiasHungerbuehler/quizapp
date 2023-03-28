@@ -1,17 +1,43 @@
-body {
-    background-color: aqua !important;
-}
 
 .container {
-    min-height: 100vh;
-    background-color: aqua !important; 
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.card-top {
+    background-color: #27355c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top-left-radius: 6px ;
+    border-top-right-radius: 6px ;
+}
+
+.card-top img {
+    margin: 22px 0;
+    height: 95px;
+    width: 110px;
+}
+
 .quiz-card {
     width: 35rem;
+}
+
+.progress {
+    background-color: #27355c !important;
+    border-radius: 0 !important;
+}
+
+.progress-bar {
+    background-color: #57abe7 !important;
+    border-top-right-radius: 6px;
+}
+
+.card-title {
+    padding: 0 6px 0 6px;
 }
 
 .question-footer {
@@ -20,6 +46,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-top: 24px;
+}
+
+.question-footer span {
+    padding-left: 8px;
+}
+
+.answer-card {
+    width: 100%;
 }
 
 .answer-card:hover {
@@ -34,4 +68,58 @@ body {
 .display-none {
     display: none;
 }
+
+.margin-top {
+    margin-top: 22px !important;
+}
+
+.startScreen-bg {
+    width: 100%;
+    height: 300px;
+    background-image: url('./img/brainbg.jpg');
+    background-position: center ; 
+    background-repeat: no-repeat; 
+    background-size: cover ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.centerCenter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 44px;
+}
+
+.trophy-bg {
+    width: 100%;
+    background-image: url('./img/tropy.png');
+    background-position: right 80%; 
+    background-repeat: no-repeat; 
+    background-size: 20%;
+    background-color: #57abe7;
+}
+
+.brain-result {
+    margin-top: 50px;
+    height: 70px;
+}
+
+.centerCenter h5 {
+    color: orange;
+}
+
+.fix-height {
+    min-height: 430px;
+}
+
+
+
+
+
+
 
