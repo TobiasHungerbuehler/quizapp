@@ -173,11 +173,11 @@ function restartQuizScreen() {
 
 
 function changeNextButton() {
-    if(currentQuestion == (questions -2)){
-        document.getElementById('next-button').classList.add('result-btn');
+    if(currentQuestion == (questions.length -2)){
+        document.getElementById('next-button').classList.add('btn-warning');
         document.getElementById('next-btn-text').innerHTML = 'Dein Resultat';
     } else {
-        document.getElementById('next-button').classList.remove('result-btn');
+        document.getElementById('next-button').classList.remove('btn-warning');
         document.getElementById('next-btn-text').innerHTML = 'Nächste Frage';
     } 
 }
